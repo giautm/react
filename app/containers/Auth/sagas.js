@@ -50,7 +50,7 @@ export function initLockWithDispatch({ dispatch }) {
 }
 
 export function* showLockSaga() {
-  yield* takeLatest(SHOW_LOCK, function* () {
+  yield* takeLatest(SHOW_LOCK, () => {
     lock.show();
   });
 }
