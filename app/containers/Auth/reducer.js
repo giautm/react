@@ -17,11 +17,9 @@ function AuthReducer(state = initialState, action) {
     case DEFAULT_ACTION:
       return state;
     case LOCK_SUCCESS:
-      console.log(action);
-      const {token, profile} = action;
       return state
-        .set('token', token)
-        .set('profile', profile);
+        .set('token', action.token)
+        .set('profile', action.profile);
     default:
       return state;
   }

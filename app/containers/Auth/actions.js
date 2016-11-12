@@ -12,7 +12,7 @@ import {
 
 export function showLock() {
   return {
-    type: SHOW_LOCK
+    type: SHOW_LOCK,
   };
 }
 
@@ -22,7 +22,7 @@ export function lockSuccess(profile, token) {
     profile,
     token,
     error: null,
-  }
+  };
 }
 
 export function lockFailure(error) {
@@ -31,5 +31,5 @@ export function lockFailure(error) {
     profile: null,
     token: null,
     error,
-  }
+  };
 }

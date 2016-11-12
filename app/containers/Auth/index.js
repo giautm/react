@@ -14,15 +14,12 @@ import {
 } from './actions';
 
 export class Auth extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  username: any;
-  password: any;
-
   constructor(props) {
     super(props);
-    this._doLogin = this._doLogin.bind(this);
+    this.doLogin = this.doLogin.bind(this);
   }
 
-  _doLogin() {
+  doLogin() {
     const { dispatch } = this.props;
     dispatch(showLock());
   }
@@ -30,16 +27,21 @@ export class Auth extends React.Component { // eslint-disable-line react/prefer-
   render() {
     const { profile } = this.props;
     if (profile) {
-      return (<FormattedMessage {...messages.welcomeName} values={profile}/>);
+      return (<FormattedMessage {...messages.welcomeName} values={profile} />);
     }
 
     return (
-      <button onClick={this._doLogin}>
-        <FormattedMessage {...messages.loginButton}/>
+      <button onClick={this.doLogin}>
+        <FormattedMessage {...messages.loginButton} />
       </button>
     );
   }
 }
+
+Auth.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+  profile: React.PropTypes.object,
+};
 
 const mapStateToProps = selectAuth();
 

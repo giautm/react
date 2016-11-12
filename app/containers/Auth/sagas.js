@@ -1,12 +1,6 @@
 import {
-  takeLatest
-} from 'redux-saga'
-import {
-  take,
-  call,
-  put,
-  select
-} from 'redux-saga/effects';
+  takeLatest,
+} from 'redux-saga';
 import Auth0Lock from 'auth0-lock';
 
 import {
@@ -33,7 +27,7 @@ const lock = new Auth0Lock(lockOptions.clientId, lockOptions.domain, lockOptions
 
 export function initLockWithDispatch({ dispatch }) {
   lock.on('authenticated', (authResult) => {
-    lock.getProfile(authResult.idToken, function (error, profile) {
+    lock.getProfile(authResult.idToken, (error, profile) => {
       if (error) {
         dispatch(lockFailure(error));
       } else {

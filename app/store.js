@@ -7,7 +7,7 @@ import { fromJS } from 'immutable';
 import { routerMiddleware } from 'react-router-redux';
 import createSagaMiddleware from 'redux-saga';
 import createReducer from './reducers';
-import authSagas, {initLockWithDispatch} from './containers/Auth/sagas';
+import authSagas, { initLockWithDispatch } from './containers/Auth/sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 

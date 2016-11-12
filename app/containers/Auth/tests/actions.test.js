@@ -1,18 +1,18 @@
 import expect from 'expect';
 import {
-  defaultAction,
+  showLock,
 } from '../actions';
 import {
-  DEFAULT_ACTION,
+  SHOW_LOCK,
 } from '../constants';
 
 describe('Auth actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('Show lock Action', () => {
+    it('has a type of SHOW_LOCK', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: SHOW_LOCK,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(showLock()).toEqual(expected);
     });
   });
 });
