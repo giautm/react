@@ -11,27 +11,26 @@ import selectAuth from './selectors';
 import messages from './messages';
 import {
   showLock,
+  signOut,
 } from './actions';
 
 export class Auth extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  constructor(props) {
-    super(props);
-    this.doLogin = this.doLogin.bind(this);
-  }
-
-  doLogin() {
-    const { dispatch } = this.props;
-    dispatch(showLock());
-  }
-
   render() {
-    const { profile } = this.props;
+    const { profile, onSignIn, onSignOut } = this.props;
     if (profile) {
-      return (<FormattedMessage {...messages.welcomeName} values={profile} />);
+      const { name } = profile;
+      return (
+        <div>
+          <FormattedMessage {...messages.welcomeName} values={{ name }} />
+          <button onClick={onSignOut} >
+            <FormattedMessage {...messages.signOutButton} />
+          </button>
+        </div>
+      );
     }
 
     return (
-      <button onClick={this.doLogin}>
+      <button onClick={onSignIn} >
         <FormattedMessage {...messages.loginButton} />
       </button>
     );
@@ -39,7 +38,8 @@ export class Auth extends React.Component { // eslint-disable-line react/prefer-
 }
 
 Auth.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
+  onSignIn: React.PropTypes.func.isRequired,
+  onSignOut: React.PropTypes.func.isRequired,
   profile: React.PropTypes.object,
 };
 
@@ -48,6 +48,8 @@ const mapStateToProps = selectAuth();
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
+    onSignIn: () => dispatch(showLock()),
+    onSignOut: () => dispatch(signOut()),
   };
 }
 

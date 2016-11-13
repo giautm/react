@@ -10,6 +10,10 @@ export default defineMessages({
     id: 'app.containers.Auth.LoginButton',
     defaultMessage: 'Login',
   },
+  signOutButton: {
+    id: 'app.containers.Auth.SignOutButton',
+    defaultMessage: 'Sign Out',
+  },
   welcomeName: {
     id: 'app.containers.Auth.WelcomeName',
     defaultMessage: 'Hi, {name}',

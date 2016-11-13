@@ -1,14 +1,19 @@
 import {
   takeLatest,
 } from 'redux-saga';
+import {
+  put,
+} from 'redux-saga/effects';
 import Auth0Lock from 'auth0-lock';
 
 import {
   lockFailure,
   lockSuccess,
+  signedOutUser,
 } from './actions';
 import {
   SHOW_LOCK,
+  SIGN_OUT,
 } from './constants';
 
 // TODO: import from json.
@@ -38,9 +43,12 @@ export function initLockWithDispatch({ dispatch }) {
       }
     });
   });
-  lock.on('authorization_error', (error) => {
-    console.log(error);
-  });
+}
+
+function* signOut() {
+  localStorage.removeItem('id_token');
+  localStorage.removeItem('profile');
+  yield put(signedOutUser());
 }
 
 export function* showLockSaga() {
@@ -49,7 +57,11 @@ export function* showLockSaga() {
   });
 }
 
+export function* signOutSaga() {
+  yield* takeLatest(SIGN_OUT, signOut);
+}
 // All sagas to be loaded
 export default [
   showLockSaga,
+  signOutSaga,
 ];

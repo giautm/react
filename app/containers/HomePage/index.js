@@ -13,11 +13,14 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 import Auth from '../Auth';
+import { Link } from 'react-router';
+
 export default class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <h1>
         <Auth /><br />
+        <Link to={'/dashboard'}>Go to Dashboard</Link>
         <FormattedMessage {...messages.header} />
       </h1>
     );

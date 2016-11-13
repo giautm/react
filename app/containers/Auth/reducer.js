@@ -4,10 +4,13 @@
  *
  */
 
-import { fromJS } from 'immutable';
+import {
+  fromJS,
+} from 'immutable';
 import {
   DEFAULT_ACTION,
   LOCK_SUCCESS,
+  SIGNED_OUT_USER,
 } from './constants';
 
 const initialState = fromJS({});
@@ -20,6 +23,10 @@ function AuthReducer(state = initialState, action) {
       return state
         .set('token', action.token)
         .set('profile', action.profile);
+    case SIGNED_OUT_USER:
+      return state
+        .set('token', null)
+        .set('profile', null);
     default:
       return state;
   }
